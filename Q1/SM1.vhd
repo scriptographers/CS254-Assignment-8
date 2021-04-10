@@ -50,4 +50,5 @@ begin
 
 	-- Function lambda2
 	green <= not s(2) or not s(0);
+	
 end architecture;

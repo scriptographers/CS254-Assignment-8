@@ -38,4 +38,5 @@ begin
 
 	Machine2 : SM2
 	port map(clk => lane_clk, rst => rst, g => g, green => green, yellow => yellow, red => red);
+	
 end architecture;
