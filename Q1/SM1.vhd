@@ -14,6 +14,8 @@ end entity;
 
 architecture struct of SM1 is
 
+	signal s, t : std_logic_vector (3 downto 0);
+
 	component DFlipFlop is
 		port (
 			clk, rst, d : in std_logic;
@@ -21,4 +23,33 @@ architecture struct of SM1 is
 	end component;
 
 begin
+
+	-- Storage Element s2
+	s2_storage : DFlipFlop
+	port map(clk => clk, rst => rst, d => t(2), q => s(2));
+
+	-- Storage Element s1
+	s1_storage : DFlipFlop
+	port map(clk => clk, rst => rst, d => t(1), q => s(1));
+
+	-- Storage Element s0
+	s0_storage : DFlipFlop
+	port map(clk => clk, rst => rst, d => t(0), q => s(0));
+
+	-- Function delta2
+	t(2) <= (s(1) and s(0)) or (s(2) and not s(1));
+	
+	-- Function delta1
+	t(1) <= (not s(1) and s(0)) or (not s(2) and s(1) and not s(0));
+	
+	-- Function delta0
+	t(0) <= (not s(1) and not s(0)) or (not s(2) and not s(0));
+	
+	-- lambda1
+	lane_clk <= s(2) and s(1);
+	
+	-- lambda2
+	green <= not s(2) or not s(0);
+
+
 end architecture;
