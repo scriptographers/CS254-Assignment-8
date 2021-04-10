@@ -14,7 +14,7 @@ end entity;
 
 architecture struct of SM1 is
 
-	signal s, t : std_logic_vector (3 downto 0);
+	signal s, t : std_logic_vector (3 downto 0) := "0000";
 
 	component DFlipFlop is
 		port (
@@ -38,18 +38,16 @@ begin
 
 	-- Function delta2
 	t(2) <= (s(1) and s(0)) or (s(2) and not s(1));
-	
+
 	-- Function delta1
 	t(1) <= (not s(1) and s(0)) or (not s(2) and s(1) and not s(0));
-	
+
 	-- Function delta0
 	t(0) <= (not s(1) and not s(0)) or (not s(2) and not s(0));
-	
-	-- lambda1
+
+	-- Function lambda1
 	lane_clk <= s(2) and s(1);
-	
-	-- lambda2
+
+	-- Function lambda2
 	green <= not s(2) or not s(0);
-
-
 end architecture;
