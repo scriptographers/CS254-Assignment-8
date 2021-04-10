@@ -10,12 +10,12 @@ end entity;
 
 architecture behave of DFlipFlop is
 begin
-	process (clk)
+	process (rst, clk)
 	begin
-		if (rising_edge(clk)) then
-			if (rst = '1') then
-				q <= '0';
-			else
+		if (rst = '1') then
+			q <= '0';
+		else
+			if (rising_edge(clk)) then
 				q <= d;
 			end if;
 		end if;
