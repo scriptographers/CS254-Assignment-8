@@ -14,7 +14,8 @@ end entity;
 
 architecture struct of TrafficLightController is
 
-	signal lane_clk, g : std_logic;
+	signal lane_clk : std_logic := '0';
+	signal g : std_logic := '1';
 
 	component SM1 is
 		port (
@@ -25,7 +26,7 @@ architecture struct of TrafficLightController is
 
 	component SM2 is
 		port (
-			clk, rst, g    : in std_logic;
+			clk, rst, g        : in std_logic;
 			green, yellow, red : out std_logic_vector(3 downto 0)
 		);
 	end component;
@@ -37,5 +38,4 @@ begin
 
 	Machine2 : SM2
 	port map(clk => lane_clk, rst => rst, g => g, green => green, yellow => yellow, red => red);
-
 end architecture;
