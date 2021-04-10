@@ -7,12 +7,14 @@ use ieee.std_logic_1164.all;
 
 entity SM2 is
 	port (
-		clk, rst           : in std_logic;
+		clk, rst, g        : in std_logic;
 		green, yellow, red : out std_logic_vector(3 downto 0)
 	);
 end entity;
 
 architecture struct of SM2 is
+
+	signal s, t : std_logic_vector (2 downto 0);
 
 	component DFlipFlop is
 		port (

@@ -25,7 +25,7 @@ architecture struct of TrafficLightController is
 
 	component SM2 is
 		port (
-			clk, rst           : in std_logic;
+			clk, rst, g    : in std_logic;
 			green, yellow, red : out std_logic_vector(3 downto 0)
 		);
 	end component;
@@ -36,6 +36,6 @@ begin
 	port map(clk => clk, rst => rst, lane_clk => lane_clk, green => g);
 
 	Machine2 : SM2
-	port map(clk => lane_clk, rst => rst, green => green, yellow => yellow, red => red);
+	port map(clk => lane_clk, rst => rst, g => g, green => green, yellow => yellow, red => red);
 
 end architecture;
